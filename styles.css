@@ -1,0 +1,920 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y proximity;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+}
+.box1 {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  display: block;
+}
+
+.box1 img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.play,
+.rec {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 200px;
+  height: 70px;
+  object-fit: contain;
+  z-index: 199;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.play-box:hover ~ .play,
+.play-box:hover ~ .rec {
+  transform: translateY(-10px);
+}
+
+.play-box {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 200px;
+  height: 70px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  position: absolute;
+  margin-top: -5%;
+}
+
+.box {
+  width: 100%;
+  height: 1080px;
+  background-color: #ffffff;
+  position: relative;
+}
+#zoomBottomBox {
+  height: 3000px;
+  scroll-snap-align: start;
+}
+#cover {
+  background-color: #005ed2;
+  z-index: 100;
+}
+.box.position-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.box.position-bottom > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+  transition: transform 0.1s linear, opacity 0.3s linear;
+  position: relative;
+}
+
+.box > img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.font-image {
+  position: relative;
+  z-index: 2;
+}
+
+.back-image {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.01s linear;
+}
+
+.back-image.show {
+  opacity: 1;
+  z-index: 3;
+}
+#zoomBottomBox {
+  height: 3000px;
+}
+.white {
+  background-color: white;
+}
+
+#scene2 {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.base {
+  opacity: 1;
+  z-index: 1;
+}
+
+.show {
+  opacity: 1 !important;
+  z-index: 10 !important;
+}
+
+.hidden {
+  opacity: 0;
+  z-index: 1;
+}
+
+#overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#overlay-container.overlay-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#overlay-container.overlay-visible {
+  opacity: 1;
+}
+
+.overlay-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#gif1 {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.box {
+  position: relative;
+}
+
+.hallway {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hello {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hallway-btn {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  height: 70px;
+  width: 200px;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 18px 18px;
+  border: 6px double white;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 600;
+  z-index: 5;
+  background-color: #005ed2;
+  transition: opacity 200ms ease, transform 120ms ease;
+  opacity: 1;
+}
+
+.hallway-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+  animation: gradientShift 3s linear infinite;
+}
+
+.hallway-btn:active {
+  transform: translateX(-50%) translateY(0);
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.hello.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gradient-box {
+  background: linear-gradient(to bottom, #005ed2 0%, #ffffff 100%);
+  height: 1080px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.gradient {
+  background: linear-gradient(to top, #005ed2 0%, #ffffff 100%);
+  height: 1080px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+.picnic-box {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 80vh;
+  display: block;
+}
+
+.picnic-box img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tree-box {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  display: block;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 20vh;
+}
+
+.tree {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.tree1 {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  z-index: 10;
+  background-color: transparent;
+  user-select: none;
+  transition: none;
+  max-height: 70%;
+  max-width: 70%;
+}
+
+.cup-box {
+  position: absolute;
+  left: 47.26%;
+  top: 73.67%;
+  width: 8.81%;
+  height: 11.89%;
+  z-index: 10;
+  background-color: transparent;
+  cursor: default;
+  user-select: none;
+}
+.picnic4 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 5;
+  animation: picnic-bob 1.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes picnic-bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cup-box:hover ~ .picnic4 {
+  animation-play-state: paused;
+}
+
+.bag-box {
+  position: absolute;
+  left: 32.5%;
+  top: 55.67%;
+  width: 16%;
+  height: 25%;
+  z-index: 100;
+  background-color: transparent;
+  cursor: default;
+  user-select: none;
+}
+
+.bag-box:hover ~ .picnic2 {
+  scale: 1.05;
+}
+
+.bag-box:hover ~ .bag {
+  scale: 1.05;
+}
+
+.mountain {
+  position: absolute;
+  left: 0%;
+  top: 9%;
+  width: 100%;
+  height: 40%;
+  z-index: 100;
+  background-color: transparent;
+  cursor: default;
+  user-select: none;
+}
+.mountain:hover ~ .picnic {
+  scale: 1.05;
+}
+
+.eyes {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.eyes img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.eye-button {
+  position: absolute;
+  left: 35%;
+  top: 30%;
+  width: 600px;
+  height: 500px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.white-eye {
+  height: 1000px;
+  width: 1000px;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.eye-close {
+  z-index: 1;
+}
+
+.eyes1 {
+  z-index: 3;
+}
+.eyes2 {
+  z-index: 4;
+}
+.eyes3 {
+  z-index: 5;
+}
+.eyes4 {
+  z-index: 6;
+}
+.eyes5 {
+  z-index: 7;
+}
+.eyes6 {
+  z-index: 8;
+}
+
+.houses {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  z-index: 6;
+  margin-top: -10%;
+}
+
+.houses img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.left {
+  position: absolute;
+  left: 5%;
+  top: 40%;
+  width: 500px;
+  height: 500px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.right {
+  position: absolute;
+  left: 70%;
+  top: 40%;
+  width: 500px;
+  height: 500px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.center {
+  position: absolute;
+  left: 37%;
+  top: 40%;
+  width: 500px;
+  height: 500px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.left:hover ~ .house3 {
+  scale: 1.05;
+}
+
+.center:hover ~ .house4 {
+  scale: 1.05;
+}
+
+.right:hover ~ .house2 {
+  scale: 1.05;
+}
+
+.text1 {
+  width: 100%;
+  height: 1010px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background-color: white;
+}
+
+.text {
+  width: 100%;
+  height: 781px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background-color: white;
+}
+
+.loading-box {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  display: block;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+  top: 30%;
+  left: 30%;
+}
+
+.tv-box {
+  position: absolute;
+  left: 50.5%;
+  top: 49.67%;
+  width: 24%;
+  height: 25%;
+  z-index: 100;
+  background-color: transparent;
+  cursor: default;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.tv-box:hover ~ .tv,
+.tv-box:hover ~ .tv2,
+.tv-box:hover ~ .tv3,
+.tv-box:hover ~ .tv4 {
+  scale: 1.05;
+}
+
+.p1 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  z-index: 100;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.p2 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 45%;
+  left: 31%;
+  z-index: 100;
+  line-height: 1.6;
+}
+
+.p2 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 44%;
+  left: 31%;
+  z-index: 100;
+  line-height: 1.6;
+}
+.p3 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  bottom: 50%;
+  right: 45%;
+  z-index: 100;
+  white-space: pre-line;
+  line-height: 1.6;
+  filter: blur(2px);
+}
+
+.p4 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  z-index: 100;
+  white-space: pre-line;
+}
+
+.p5 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 16%;
+  left: 20%;
+  z-index: 100;
+  white-space: pre-line;
+}
+
+.p6 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  z-index: 100;
+  white-space: pre-line;
+}
+
+.p7 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  bottom: 14%;
+  right: 10%;
+  z-index: 100;
+  white-space: pre-line;
+}
+
+.text-background {
+  position: absolute;
+  top: 20%;
+  left: 45%;
+  padding: 20px 40px;
+  border-radius: 10px;
+  height: 100px;
+  width: auto;
+}
+
+.p8 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 65px;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  z-index: 100;
+  white-space: pre-line;
+  position: relative;
+}
+
+.p8::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, #005ed2 100%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  border-radius: 100%;
+}
+
+.p9 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 100;
+  white-space: pre-line;
+  transform: translateX(-50%);
+}
+.p10 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  z-index: 100;
+  white-space: pre-line;
+  padding: 20px 40px;
+}
+
+.p11 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  top: 30%;
+  right: 45%;
+  z-index: 100;
+  white-space: pre-line;
+}
+
+.p12 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 64px;
+  color: white;
+  position: absolute;
+  top: 35%;
+  right: 15%;
+  z-index: 100;
+  white-space: pre-line;
+  animation: glitch 1s linear infinite;
+}
+@keyframes glitch {
+  0% {
+    text-shadow: 4px 0 rgb(255, 0, 238), -4px 0 cyan;
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 cyan;
+  }
+  40% {
+    text-shadow: 3px 0 rgb(255, 0, 238), -5px 0 cyan;
+  }
+  60% {
+    text-shadow: -2px 0 red, 2px 0 cyan;
+  }
+  80% {
+    text-shadow: 6px 0 rgb(255, 0, 238), -6px 0 cyan;
+  }
+  100% {
+    text-shadow: -2px 0 red, 2px 0 cyan;
+  }
+}
+
+.first {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background-color: #005ed2;
+}
+
+.p13 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  z-index: 1;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.p14 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 0%;
+  left: 10%;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.p15 {
+  font-family: "ocr-a-std", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: #005ed2;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  z-index: 1;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.end-box {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin-top: -20vh;
+}
+
+.end-box img {
+  position: absolute;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.error1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.error2 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+}
+
+.error3 {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  bottom: 0%;
+  right: 30%;
+  z-index: 4;
+}
+
+.error4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0%;
+  right: 30%;
+  z-index: 5;
+}
